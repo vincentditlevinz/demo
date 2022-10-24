@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
 	implementation("org.apache.camel.springboot:camel-spring-boot-starter:3.19.0")
-	implementation("org.apache.camel.springboot:camel-rabbitmq-starter:3.19.0")
+	implementation("org.apache.camel.springboot:camel-spring-rabbitmq-starter:3.19.0")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

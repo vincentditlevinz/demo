@@ -20,11 +20,13 @@ If you forgot this step you should see this expected error:
 `channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no queue 'CPGateway' in vhost '/', class-id=50, method-id=10)`
 
 # Camel application
+
+As we need transactional consumer pattern, we ended with the [Spring-RabbitMQ](https://camel.apache.org/components/latest/spring-rabbitmq-component.html) Camel component instead of the [RabbitMQ](https://camel.apache.org/components/latest/rabbitmq-component.html) component.
 ## Camel application setup
-* camel.component.rabbitmq.username=the username as printed during [Use Management console](#use-management-console)
-* camel.component.rabbitmq.password=the password as printed during [Use Management console](#use-management-console)
-* camel.component.rabbitmq.hostname=localhost
-* camel.component.rabbitmq.port-number=5672
+* spring.rabbitmq.username=the username as printed during [Use Management console](#use-management-console)
+* spring.rabbitmq.password=the password as printed during [Use Management console](#use-management-console)
+* spring.rabbitmq.host=localhost
+* spring.rabbitmq.port=5672
 
 ## Running Camel application
 The application run two simple routes:
