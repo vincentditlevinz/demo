@@ -3,7 +3,7 @@ This demo shows how to use Apache Camel in a SpringBoot application to read/writ
 ## RabbitMQ setup
 We use a RabbitMQ setup in a K8s GCP cluster. The setup is same as the one described in [RabbitMQ official documentation](https://www.rabbitmq.com/kubernetes/operator/quickstart-operator.html)
 
-### Use Management console
+### How to use Management console
 
 ```
 username="$(kubectl get secret hello-world-default-user -o jsonpath='{.data.username}' | base64 --decode)"
@@ -14,10 +14,8 @@ echo "password: $password"
 kubectl port-forward "service/hello-world" 15672
 ```
 
-Open your [browser](http://localhost:15672/) and add a queue named `CPGateway` (you can use all default values proposed by the UI)
-If you forgot this step you should see this expected error: 
-
-`channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no queue 'CPGateway' in vhost '/', class-id=50, method-id=10)`
+Open your [browser](http://localhost:15672/) 
+You do not need to create all the AMQP boilerplate (exchanges, queues, bindings), this is handled by [RabbitMQAdminConfiguration](https://github.com/vincentditlevinz/demo/blob/e8c7208841beede9ac0214070edb1a1cd1cca66c/src/main/kotlin/com/example/demo/RabbitMQAdminConfiguration.kt#L14).
 
 # Camel application
 
