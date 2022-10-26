@@ -1,13 +1,15 @@
 package com.example.demo
 
 import com.google.protobuf.util.Timestamps
+import org.apache.camel.Body
+import org.apache.camel.Header
 import org.apache.camel.builder.RouteBuilder
 import org.springframework.stereotype.Component
 import java.util.*
 
-@Component
+@Component("RabbitMQRouteBuilder")
 class RabbitMQRouteBuilder : RouteBuilder() {
-    internal fun buildMessage(date: Date): SyncOrder {
+    fun buildSyncOrder(@Header("firedTime") date: Date): ByteArray {
         val yaml = "I am yaml"
         return SyncOrder.newBuilder()
             .setId(10000L)
@@ -18,24 +20,23 @@ class RabbitMQRouteBuilder : RouteBuilder() {
                     .setLabel("PythonJob")
                     .setYaml(yaml)
             )
-            .build()
+            .build().toByteArray()
+    }
+
+    fun extractSyncOrder(@Body message: ByteArray): SyncOrder {
+        return SyncOrder.parseFrom(message)
     }
 
     override fun configure() {
-        from("timer://myTimer?period=2000")
-            .process {
-                val date = it.getIn().getHeader("firedTime", Date::class.java)
-                val message = buildMessage(date)
-                it.getIn().setBody(message.toByteArray(), ByteArray::class.java)
-            }
+        from("timer://pollSyncOrdersFromControlPlane?period=2000")
+            .routeId("writeSyncOrders")
+            .bean("RabbitMQRouteBuilder", "buildSyncOrder")
             .to("log:info")
             .to("spring-rabbitmq:CPGateway?routingKey=CPGatewayOrders")
 
         from("spring-rabbitmq:CPGateway?queues=CPGatewayQueue")
-            .process {
-                val messageAsBytes = it.getIn().getBody(ByteArray::class.java)
-                it.getIn().setBody(SyncOrder.parseFrom(messageAsBytes), String::class.java)
-            }
+            .routeId("readSyncOrders")
+            .bean("RabbitMQRouteBuilder", "extractSyncOrder")
             .to("log:warn")
     }
 }
