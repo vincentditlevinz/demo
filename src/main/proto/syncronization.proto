@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+
+option java_package = "com.example.demo";
+option java_outer_classname = "CPDPSynchronizationProto";
+option java_multiple_files = true;
+
+import "google/protobuf/timestamp.proto";
+
+message SyncOrder {
+  enum SyncOrderType {
+    Unknown = 0; // enum must start with value 0 (proto3) which is considered missing value and as such not printed.
+    JobCreatedSyncOrder = 1;
+  }
+
+  message Target {
+    string label = 1;
+    string hostname = 2;
+  }
+
+  message Asset {
+    string path = 1;
+    string checksum = 2;
+  }
+
+  message Deployment {
+    string label = 1;
+    string yaml = 2;
+  }
+
+  int64 id = 1;
+  SyncOrderType type = 2;
+  google.protobuf.Timestamp createdAt = 3;
+  repeated Target targets = 4;
+  repeated Asset assets = 5;
+  optional Deployment deployment = 6;
+}
