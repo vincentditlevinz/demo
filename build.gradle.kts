@@ -30,6 +30,9 @@ dependencies {
 	implementation("com.google.protobuf:protobuf-java-util:3.21.8")
 	implementation("io.grpc:grpc-stub:1.50.2")
 	implementation("io.grpc:grpc-protobuf:1.50.2")
+	implementation("org.apache.camel:camel-minio:3.19.0")
+	implementation("org.apache.camel.springboot:camel-minio-starter:3.19.0")
+	implementation("org.apache.camel.springboot:camel-file-starter:3.19.0")
 }
 
 tasks.withType<KotlinCompile> {
