@@ -1,11 +1,9 @@
 package com.example.demo
 
 import com.google.protobuf.util.Timestamps
-import io.minio.ListObjectsArgs
 import org.apache.camel.Body
 import org.apache.camel.Header
 import org.apache.camel.builder.RouteBuilder
-import org.apache.camel.component.minio.MinioConstants
 import org.springframework.stereotype.Component
 import java.util.*
 
