@@ -25,6 +25,15 @@ As we need transactional consumer pattern, we ended with the [Spring-RabbitMQ](h
 * spring.rabbitmq.password=the password as printed during [Use Management console](#use-management-console)
 * spring.rabbitmq.host=localhost
 * spring.rabbitmq.port=5672
+* camel.component.minio.access-key=the username as printed during [Minio credentials](#minio-credentials)
+* camel.component.minio.secret-key=the password as printed during [Minio credentials](#minio-credentials)
+
+## Minio credentials
+
+```
+username="$(kubectl get secret saagie-common-minio-root -o jsonpath='{.data.rootUser}' | base64 -d)"
+password="$(kubectl get secret saagie-common-minio-root -o jsonpath='{.data.rootPassword}' | base64 -d)"
+```
 
 ## Running Camel application
 The application run two simple routes:
@@ -33,4 +42,8 @@ The application run two simple routes:
 
 For the moment this application is just a simple POC that is not configured to be run in K8s but just on your laptop. To enable K8s connection you should run:
 
-`kubectl port-forward "service/hello-world" 5672`
+```
+kubectl port-forward "service/hello-world" 5672
+kubectl port-forward "service/saagie-common-minio" 9000
+```
+
