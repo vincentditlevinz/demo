@@ -15,8 +15,28 @@ group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
+val nexusSaagieUrl: String by project
+val nexusSaagieUsername: String by project
+val nexusSaagiePassword: String by project
+
 repositories {
 	mavenCentral()
+	maven {
+		name = "SaagieRepository"
+		url = uri("$nexusSaagieUrl/repository/saagie-repository/")
+		credentials {
+			username = nexusSaagieUsername
+			password = nexusSaagiePassword
+		}
+	}
+	maven {
+		name = "SaagieStagingRepository"
+		url = uri("$nexusSaagieUrl/repository/saagie-staging")
+		credentials {
+			username = nexusSaagieUsername
+			password = nexusSaagiePassword
+		}
+	}
 }
 
 dependencies {
@@ -33,6 +53,10 @@ dependencies {
 	implementation("org.apache.camel:camel-minio:3.19.0")
 	implementation("org.apache.camel.springboot:camel-minio-starter:3.19.0")
 	implementation("org.apache.camel.springboot:camel-file-starter:3.19.0")
+	implementation("org.apache.camel.springboot:camel-kubernetes-starter:3.19.0")
+	implementation("org.apache.camel:camel-jackson:3.19.0")
+	implementation("org.apache.camel.springboot:camel-jackson-starter:3.19.0")
+	implementation("io.saagie.projects-and-jobs:argo-model:1.19.2209301445-3683.110")
 }
 
 tasks.withType<KotlinCompile> {
