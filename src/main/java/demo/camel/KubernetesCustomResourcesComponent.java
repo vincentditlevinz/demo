@@ -1,23 +1,14 @@
 package demo.camel;
 
-import org.apache.camel.Endpoint;
-import org.apache.camel.component.kubernetes.AbstractKubernetesComponent;
 import org.apache.camel.component.kubernetes.KubernetesConfiguration;
+import org.apache.camel.component.kubernetes.customresources.KubernetesCustomResourcesComponentConfigurer;
+import org.apache.camel.component.kubernetes.customresources.KubernetesCustomResourcesEndpointConfigurer;
 import org.apache.camel.spi.PropertyConfigurer;
 
-import java.util.Map;
-
-@org.apache.camel.spi.annotations.Component("saagie-kubernetes-custom-resources")
-public class KubernetesCustomResourcesComponent extends AbstractKubernetesComponent {
-
-    public KubernetesCustomResourcesComponent() {
-    }
-
-    @Override
-    protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {
-        return super.createEndpoint(uri, remaining, parameters);
-    }
-
+/**
+ * Override component provided by Camel to provide our custom endpoint and force usage of Camel configurers
+ */
+public class KubernetesCustomResourcesComponent extends org.apache.camel.component.kubernetes.customresources.KubernetesCustomResourcesComponent {
     @Override
     public PropertyConfigurer getEndpointPropertyConfigurer() {
         return new KubernetesCustomResourcesEndpointConfigurer();

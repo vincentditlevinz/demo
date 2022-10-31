@@ -2,22 +2,15 @@ package demo.camel;
 
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
-import org.apache.camel.Producer;
-import org.apache.camel.component.kubernetes.AbstractKubernetesEndpoint;
 import org.apache.camel.component.kubernetes.KubernetesConfiguration;
 
 /**
- * KubernetesCustomResources component
+ * Override endpoint provided by Camel to provide a custom consumer
  */
-public class KubernetesCustomResourcesEndpoint extends AbstractKubernetesEndpoint {
+public class KubernetesCustomResourcesEndpoint extends org.apache.camel.component.kubernetes.customresources.KubernetesCustomResourcesEndpoint {
     public KubernetesCustomResourcesEndpoint(String uri, KubernetesCustomResourcesComponent component,
                                              KubernetesConfiguration config) {
         super(uri, component, config);
-    }
-
-    @Override
-    public Producer createProducer() throws Exception {
-        return new KubernetesCustomResourcesProducer(this);
     }
 
     @Override

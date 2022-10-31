@@ -21,6 +21,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 
+/**
+ * Override consumer provided by Camel to use model (like argo Workflow class) instead of generic resource (easier to configure for our use case)
+ */
 public class KubernetesCustomResourcesConsumer extends DefaultConsumer {
 
     private static final Logger LOG = LoggerFactory.getLogger(KubernetesCustomResourcesConsumer.class);
