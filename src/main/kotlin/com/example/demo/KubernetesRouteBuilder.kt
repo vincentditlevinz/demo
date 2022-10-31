@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class KubernetesRouteBuilder : RouteBuilder() {
     override fun configure() {
         from("timer://kubernetesResources?repeatCount=1")
-            .routeId("k8sArgoAnalysis")
+            .routeId("k8sCronWorkflowsList")
             .setHeader(KubernetesConstants.KUBERNETES_CRD_NAME, constant("useless"))
             .setHeader(KubernetesConstants.KUBERNETES_CRD_GROUP, constant("argoproj.io"))
             .setHeader(KubernetesConstants.KUBERNETES_CRD_SCOPE, constant("Cluster"))
@@ -34,10 +34,11 @@ class KubernetesRouteBuilder : RouteBuilder() {
             .to("log:warn")
 
         from("timer://kubernetesResources?repeatCount=1")
-            .setHeader(KubernetesConstants.KUBERNETES_CRD_LABELS) {
+            .routeId("k8sDeploymentsList")
+            .setHeader(KubernetesConstants.KUBERNETES_DEPLOYMENTS_LABELS) {
                 mapOf("io.saagie/installationId" to "dev3787")
             }
-            .to("kubernetes-deployments:https://35.233.53.73?operation=listDeployments")
+            .to("kubernetes-deployments:https://35.233.53.73?operation=listDeploymentsByLabels")
             .split(body())
             .to("log:warn")
     }

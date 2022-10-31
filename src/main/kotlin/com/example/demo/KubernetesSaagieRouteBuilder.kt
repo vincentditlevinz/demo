@@ -14,7 +14,7 @@ class KubernetesSaagieRouteBuilder : RouteBuilder() {
     override fun configure() {
         registerCustomComponent()
         from("saagie-kubernetes-custom-resources:https://35.233.53.73?namespace=&resourceName=workflow")
-            .routeId("k8sArgoWatcher")
+            .routeId("saagie-k8sArgoWatcher")
             .process {
                 val message = it.getIn()
                 val cm = message.getBody(Workflow::class.java)
@@ -23,7 +23,7 @@ class KubernetesSaagieRouteBuilder : RouteBuilder() {
             .to("log:warn")
 
         from("timer://kubernetesResources?repeatCount=1")
-            .routeId("k8sArgoAnalysis")
+            .routeId("saagie-k8sArgoAnalysis")
             .setHeader(KubernetesConstants.KUBERNETES_CRD_NAME, constant("useless"))
             .setHeader(KubernetesConstants.KUBERNETES_CRD_GROUP, constant("argoproj.io"))
             .setHeader(KubernetesConstants.KUBERNETES_CRD_SCOPE, constant("Cluster"))
