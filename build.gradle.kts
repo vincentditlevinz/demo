@@ -40,6 +40,7 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.apache.camel.springboot:camel-spring-boot-starter:3.19.0")
 	implementation("org.apache.camel.springboot:camel-spring-rabbitmq-starter:3.19.0")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -56,6 +57,8 @@ dependencies {
 	implementation("org.apache.camel.springboot:camel-kubernetes-starter:3.19.0")
 	implementation("org.apache.camel:camel-jackson:3.19.0")
 	implementation("org.apache.camel.springboot:camel-jackson-starter:3.19.0")
+	implementation("org.apache.camel.springboot:camel-rest-starter:3.19.0")
+	implementation("org.apache.camel.springboot:camel-servlet-starter:3.19.0")
 	implementation("io.saagie.projects-and-jobs:argo-model:1.19.2209301445-3683.110")
 }
 

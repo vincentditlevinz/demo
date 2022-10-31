@@ -7,6 +7,8 @@ import io.fabric8.kubernetes.client.Watcher;
 import io.fabric8.kubernetes.client.WatcherException;
 import io.fabric8.kubernetes.client.dsl.MixedOperation;
 import io.fabric8.kubernetes.client.dsl.Resource;
+import io.saagie.argo.api.model.workflow.CronWorkflow;
+import io.saagie.argo.api.model.workflow.CronWorkflowList;
 import io.saagie.argo.api.model.workflow.Workflow;
 import io.saagie.argo.api.model.workflow.WorkflowList;
 import org.apache.camel.Exchange;
@@ -113,6 +115,8 @@ public class KubernetesCustomResourcesConsumer extends DefaultConsumer {
             switch (name) {
                 case "workflow":
                     return getEndpoint().getKubernetesClient().resources(Workflow.class, WorkflowList.class);
+                case "cronworkflow":
+                    return getEndpoint().getKubernetesClient().resources(CronWorkflow.class, CronWorkflowList.class);
                 default:
                     throw new IllegalArgumentException(String.format("Unsupported resource type: %s", name));
             }

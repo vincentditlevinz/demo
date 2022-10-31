@@ -18,7 +18,7 @@ class MinioRouteBuilder : RouteBuilder() {
             .to("minio://external-technology-scripts")
 
         from("timer://minioCommon?delay=5000&period=5000")
-            .routeId("minioCommon")
+            .routeId("minioListExternalTechnologies")
             .setBody { ListObjectsArgs.builder()
                 .bucket("external-technology-scripts")
                 .recursive(true) }

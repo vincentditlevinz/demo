@@ -20,10 +20,10 @@ class KubernetesSaagieRouteBuilder : RouteBuilder() {
                 val cm = message.getBody(Workflow::class.java)
                 log.info("Got event with custom resource job id: ${cm?.metadata?.labels?.get("io.saagie/job-id")} and action ${message.getHeader(KubernetesConstants.KUBERNETES_CRD_EVENT_ACTION)}")
             }
-            .to("log:warn")
+            .to("log:error")
 
-        from("timer://kubernetesResources?repeatCount=1")
-            .routeId("saagie-k8sArgoAnalysis")
+       from("timer://kubernetesR:esources?repeatCount=1")
+            .routeId("saagie-k8sCronWorkflowsList")
             .setHeader(KubernetesConstants.KUBERNETES_CRD_NAME, constant("useless"))
             .setHeader(KubernetesConstants.KUBERNETES_CRD_GROUP, constant("argoproj.io"))
             .setHeader(KubernetesConstants.KUBERNETES_CRD_SCOPE, constant("Cluster"))

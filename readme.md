@@ -36,9 +36,17 @@ password="$(kubectl get secret saagie-common-minio-root -o jsonpath='{.data.root
 ```
 
 ## Running Camel application
-The application run two simple routes:
-* A first route builds a message on a regular basis (timer) and sends it to RabbitMQ CPGateway queue
-* A second route reads from RabbitMQ CPGateway queue and print the message at WARN level
+The application run several routes:
+1. k8sCronWorkflowsList: list K8s CronWorkflows custom resource using default Camel component 
+2. k8sArgoWatcher: watch K8s CronWorkflow custom resource using default Camel component 
+3. k8sDeploymentsList: list K8s deployments using default Camel component 
+4. saagie-k8sCronWorkflowsList: list K8s CronWorkflows custom resource using a custom component derived from Camel one
+5. saagie-kk8sArgoWatcher: watch K8s CronWorkflow custom resource using a custom component derived from Camel one 
+6. minioCommonUpload: upload a file in minio common 
+7. minioListExternalTechnologies: list minio objects in external technologies bucket 
+8. writeSyncOrders: send a protobuf message in a dedicated RabbitMQ queue 
+9. readSyncOrders: read a protobuf message from a dedicated RabbitMQ queue 
+10. downloadApi: Rest api to download a file
 
 For the moment this application is just a simple POC that is not configured to be run in K8s but just on your laptop. To enable K8s connection you should run:
 
