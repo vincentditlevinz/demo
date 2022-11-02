@@ -6,7 +6,7 @@ import org.apache.camel.component.minio.MinioConstants
 import org.springframework.stereotype.Component
 import java.util.*
 
-//@Component("MinioRouteBuilder")
+@Component("MinioRouteBuilder")
 class MinioRouteBuilder : RouteBuilder() {
     override fun configure() {
         from("file:src/main/resources/assets?noop=true")
