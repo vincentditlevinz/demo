@@ -70,7 +70,7 @@ Obviously one can always write all by hand but, here are a few arguments in favo
 * A lot of out of the box connectors (as shown in this POC overriding a built-in component is rather easy)
 * A lot is done behind the scene, for instance error handling, retry, monitoring...
 * Apache Camel [monitoring metrics can be sent to tools like Prometheus](https://danielblancocuadrado.medium.com/apache-camel-create-your-own-metric-with-micrometer-b10d2db09b4f)
-* Apache Camel supports [health checks](https://camel.apache.org/manual/health-check.html) which is very useful in a K8s environment
+* Apache Camel supports [health checks](https://camel.apache.org/manual/health-check.html) which is very useful in a K8s environment ([see example](https://github.com/apache/camel-spring-boot-examples/tree/main/health-checks))
 
 One might argue that learning Apache Camel is hard:
 * A lot of documentations and books do exist
