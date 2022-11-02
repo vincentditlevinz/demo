@@ -62,3 +62,18 @@ kubectl port-forward "service/saagie-common-minio" 9000
 ## A note on large files
 * We tested a [1 GB file](https://testfiledownload.com/) upload successfully with `minioCommonUpload` route
 * We tested a 1 GB file download successfully with `downloadApi` route.
+
+# Advantages of using Apache Camel over handmade code
+Obviously one can always write all by hand but, here are a few arguments in favor of using Apache Camel:
+* Code handled by Apache Camel IS NOT business code but low level technical integration code. As a rule of thumb, we write software for our core business and buy software for the rest. The same should apply when considering business and technical code !
+* A homogeneous DSL to integrate everything
+* A lot of out of the box connectors (as shown in this POC overriding a built-in component is rather easy)
+* A lot is done behind the scene, for instance error handling, retry, monitoring...
+* Apache Camel [monitoring metrics can be sent to tools like Prometheus](https://danielblancocuadrado.medium.com/apache-camel-create-your-own-metric-with-micrometer-b10d2db09b4f)
+* Apache Camel supports [health checks](https://camel.apache.org/manual/health-check.html) which is very useful in a K8s environment
+
+One might argue that learning Apache Camel is hard:
+* A lot of documentations and books do exist
+* Apache Camel has also [commercial support offering](https://camel.apache.org/manual/commercial-camel-offerings.html) for training support
+* Apache Camel, like any technology as Springframework, Java..., is a competence one can find in the developers' market
+* The competence of writing very low level technical stuffs the right way might be harder to find
