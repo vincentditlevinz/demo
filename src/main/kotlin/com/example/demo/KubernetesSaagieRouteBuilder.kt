@@ -22,7 +22,7 @@ class KubernetesSaagieRouteBuilder : RouteBuilder() {
             }
             .to("log:error")
 
-       from("timer://kubernetesR:esources?repeatCount=1")
+       from("timer://kubernetesResources?repeatCount=1")
             .routeId("saagie-k8sCronWorkflowsList")
             .setHeader(KubernetesConstants.KUBERNETES_CRD_NAME, constant("useless"))
             .setHeader(KubernetesConstants.KUBERNETES_CRD_GROUP, constant("argoproj.io"))
