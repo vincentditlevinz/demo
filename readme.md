@@ -59,3 +59,7 @@ kubectl port-forward "service/saagie-common-minio" 9000
 ## K8s watcher
 ![K8s watcher outputs](./img/Capture%20d’écran%20du%202022-11-02%2012-28-07.png)
 
+## A note on large files
+
+* We tested a 1 GB file upload successfully with `minioCommonUpload` route
+* We tested a 1 GB file download successfully with `downloadApi` route.

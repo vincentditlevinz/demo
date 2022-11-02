@@ -1,6 +1,5 @@
 package com.example.demo
 
-import io.minio.ListObjectsArgs
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.component.minio.MinioConstants
 import org.springframework.stereotype.Component
@@ -20,13 +19,10 @@ class RestDownloadRouteBuilder : RouteBuilder() {
 
         from("direct:downloadMinio")
             .routeId("serveFromMinio")
-            .setBody { ListObjectsArgs.builder()
-                .bucket("external-technology-scripts")
-                .recursive(true) }
             .process {
                 it.getIn().setHeader(MinioConstants.OBJECT_NAME, it.getIn().getHeader("path"))
             }
-            .pollEnrich("minio://external-technology-scripts?operation=getObject&pojoRequest=true", 10000)
+            .enrich("minio://external-technology-scripts?operation=getObject")
             .setHeader("Content-Disposition").spel("attachment;filename=#{headers.CamelMinioObjectName}")
     }
 }
