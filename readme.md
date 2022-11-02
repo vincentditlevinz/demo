@@ -61,5 +61,5 @@ kubectl port-forward "service/saagie-common-minio" 9000
 
 ## A note on large files
 
-* We tested a 1 GB file upload successfully with `minioCommonUpload` route
+* We tested a [1 GB file](https://testfiledownload.com/) upload successfully with `minioCommonUpload` route
 * We tested a 1 GB file download successfully with `downloadApi` route.
