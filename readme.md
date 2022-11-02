@@ -55,3 +55,7 @@ kubectl port-forward "service/hello-world" 5672
 kubectl port-forward "service/saagie-common-minio" 9000
 ```
 
+# Proof of work
+## K8s watcher
+![K8s watcher outputs](./img/Capture%20d’écran%20du%202022-11-02%2012-28-07.png)
+
