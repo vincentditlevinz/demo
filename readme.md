@@ -21,8 +21,8 @@ You do not need to create all the AMQP boilerplate (exchanges, queues, bindings)
 
 As we need transactional consumer pattern, we ended with the [Spring-RabbitMQ](https://camel.apache.org/components/latest/spring-rabbitmq-component.html) Camel component instead of the [RabbitMQ](https://camel.apache.org/components/latest/rabbitmq-component.html) component.
 ## Camel application setup
-* spring.rabbitmq.username=the username as printed during [Use Management console](#use-management-console)
-* spring.rabbitmq.password=the password as printed during [Use Management console](#use-management-console)
+* spring.rabbitmq.username=the username as printed during [Use Management console](#how-to-use-management-console)
+* spring.rabbitmq.password=the password as printed during [Use Management console](#how-to-use-management-console)
 * spring.rabbitmq.host=localhost
 * spring.rabbitmq.port=5672
 * camel.component.minio.access-key=the username as printed during [Minio credentials](#minio-credentials)

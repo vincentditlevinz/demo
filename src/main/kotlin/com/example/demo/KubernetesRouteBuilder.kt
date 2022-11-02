@@ -6,7 +6,7 @@ import org.apache.camel.component.jackson.JacksonDataFormat
 import org.apache.camel.component.kubernetes.KubernetesConstants
 import org.springframework.stereotype.Component
 
-@Component("KubernetesRouteBuilder")
+//@Component("KubernetesRouteBuilder")
 class KubernetesRouteBuilder : RouteBuilder() {
     override fun configure() {
         from("timer://kubernetesResources?repeatCount=1")

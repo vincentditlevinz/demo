@@ -7,7 +7,7 @@ import org.apache.camel.builder.RouteBuilder
 import org.springframework.stereotype.Component
 import java.util.*
 
-@Component("RabbitMQRouteBuilder")
+//@Component("RabbitMQRouteBuilder")
 class RabbitMQRouteBuilder : RouteBuilder() {
     fun buildSyncOrder(@Header("firedTime") date: Date): ByteArray {
         val yaml = "I am yaml"
