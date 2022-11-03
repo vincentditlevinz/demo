@@ -35,7 +35,7 @@ password="$(kubectl get secret saagie-common-minio-root -o jsonpath='{.data.root
 ```
 
 ## Invoke Grpc service
-For testing you can try [Grpcurl](https://github.com/fullstorydev/grpcurl). Query examples are provided [here]()
+For testing you can try [Grpcurl](https://github.com/fullstorydev/grpcurl). Query examples are provided [here](https://github.com/vincentditlevinz/demo/blob/master/grpcurl-queries.txt)
 
 ## Running Camel application
 The application run several routes:
