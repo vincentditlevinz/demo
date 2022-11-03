@@ -14,6 +14,10 @@ plugins {
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
+val camelVersion = "3.19.0"
+val grpcVersion = "1.48.1"
+val protobufVersion = "3.21.8"
+
 
 val nexusSaagieUrl: String by project
 val nexusSaagieUsername: String by project
@@ -41,24 +45,25 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.apache.camel.springboot:camel-spring-boot-starter:3.19.0")
-	implementation("org.apache.camel.springboot:camel-spring-rabbitmq-starter:3.19.0")
+	implementation("org.apache.camel.springboot:camel-spring-boot-starter:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-spring-rabbitmq-starter:$camelVersion")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-	implementation("com.google.protobuf:protobuf-java:3.21.8")
-	implementation("com.google.protobuf:protobuf-java-util:3.21.8")
-	implementation("io.grpc:grpc-stub:1.50.2")
-	implementation("io.grpc:grpc-protobuf:1.50.2")
-	implementation("org.apache.camel:camel-minio:3.19.0")
-	implementation("org.apache.camel.springboot:camel-minio-starter:3.19.0")
-	implementation("org.apache.camel.springboot:camel-file-starter:3.19.0")
-	implementation("org.apache.camel.springboot:camel-kubernetes-starter:3.19.0")
-	implementation("org.apache.camel:camel-jackson:3.19.0")
-	implementation("org.apache.camel.springboot:camel-jackson-starter:3.19.0")
-	implementation("org.apache.camel.springboot:camel-rest-starter:3.19.0")
-	implementation("org.apache.camel.springboot:camel-servlet-starter:3.19.0")
+	implementation("com.google.protobuf:protobuf-java:$protobufVersion")
+	implementation("com.google.protobuf:protobuf-java-util:$protobufVersion")
+	implementation("io.grpc:grpc-stub:$grpcVersion")
+	implementation("io.grpc:grpc-protobuf:$grpcVersion")
+	implementation("org.apache.camel:camel-minio:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-minio-starter:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-file-starter:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-kubernetes-starter:$camelVersion")
+	implementation("org.apache.camel:camel-jackson:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-jackson-starter:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-rest-starter:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-servlet-starter:$camelVersion")
+	implementation("org.apache.camel.springboot:camel-grpc-starter:$camelVersion")
 	implementation("io.saagie.projects-and-jobs:argo-model:1.19.2209301445-3683.110")
 }
 

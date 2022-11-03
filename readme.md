@@ -1,5 +1,5 @@
-# SpringBoot + Camel + RabbitMQ
-This demo shows how to use Apache Camel in a SpringBoot application to read/write into an already existing queue.
+# SpringBoot + Camel + RabbitMQ + Minio + K8s Api + Rest + Grpc
+This demo shows how to use Apache Camel in a SpringBoot application for a bunch of technologies we have to integrate.
 ## RabbitMQ setup
 We use a RabbitMQ setup in a K8s GCP cluster. The setup is same as the one described in [RabbitMQ official documentation](https://www.rabbitmq.com/kubernetes/operator/quickstart-operator.html)
 
@@ -29,11 +29,13 @@ As we need transactional consumer pattern, we ended with the [Spring-RabbitMQ](h
 * camel.component.minio.secret-key=the password as printed during [Minio credentials](#minio-credentials)
 
 ## Minio credentials
-
 ```
 username="$(kubectl get secret saagie-common-minio-root -o jsonpath='{.data.rootUser}' | base64 -d)"
 password="$(kubectl get secret saagie-common-minio-root -o jsonpath='{.data.rootPassword}' | base64 -d)"
 ```
+
+## Invoke Grpc service
+For testing you can try [Grpcurl](https://github.com/fullstorydev/grpcurl). Query examples are provided [here]()
 
 ## Running Camel application
 The application run several routes:

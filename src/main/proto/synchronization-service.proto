@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo";
+option java_outer_classname = "CPSynchronizationService";
+option java_multiple_files = true;
+
+import "synchronization.proto";
+
+service SynchronizationService {
+  rpc GetSyncOrders(SynchronizationServiceRequest) returns (SynchronizationServiceResponse) {}
+}
+
+enum SyncOrderStatus {
+  Unknown = 0; // enum must start with value 0 (proto3) which is considered missing value and as such not printed.
+  Todo = 1;
+  Pending = 2;
+  Done = 3;
+}
+
+message SynchronizationServiceRequest {
+  uint32 polling_period = 1;
+  repeated SyncOrderStatus target_status = 2;
+}
+
+message SynchronizationServiceResponse {
+  repeated SyncOrder orders = 1;
+}
+
