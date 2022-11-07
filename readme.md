@@ -44,11 +44,11 @@ The application run several routes:
 3. k8sDeploymentsList: list K8s deployments using default Camel component 
 4. saagie-k8sCronWorkflowsList: list K8s CronWorkflows custom resource using a custom component derived from Camel one
 5. saagie-kk8sArgoWatcher: watch K8s CronWorkflow custom resource using a custom component derived from Camel one 
-6. minioCommonUpload: upload a file in minio common 
-7. minioListExternalTechnologies: list minio objects in external technologies bucket 
-8. writeSyncOrders: send a protobuf message in a dedicated RabbitMQ queue 
+6. minioCommonUpload: upload files in minio common (Note: the 1GB.bin file is not committed in this GitHub repository because of its weight !)
+7. minioListExternalTechnologies: list minio objects stored in external technologies bucket
+8. writeSyncOrders: send a protobuf message in a dedicated RabbitMQ queue
 9. readSyncOrders: read a protobuf message from a dedicated RabbitMQ queue 
-10. downloadApi(including serveFromMinio): Rest api to download a file, use `http://localhost:8080/api/download/module.js` for testing.
+10. downloadApi(including serveFromMinio): Rest api to download a file, use `http://localhost:8080/api/download/module.js` or `http://localhost:8080/api/download/1GB.bin` for testing.
 11. grpcService: route GRPC method calls to implementation
 
 For the moment this application is just a simple POC that is not configured to be run in K8s but just on your laptop. To enable K8s connection you should run:
