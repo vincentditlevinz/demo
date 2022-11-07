@@ -7,7 +7,8 @@ option java_multiple_files = true;
 import "synchronization.proto";
 
 service SynchronizationService {
-  rpc GetSyncOrders(SynchronizationServiceRequest) returns (SynchronizationServiceResponse) {}
+  rpc GetSyncOrders(GetSyncOrdersRequest) returns (GetSyncOrdersResponse) {}
+  rpc UpdateSyncOrders(UpdateSyncOrdersRequest) returns (UpdateSyncOrdersResponse) {}
 }
 
 enum SyncOrderStatus {
@@ -17,12 +18,19 @@ enum SyncOrderStatus {
   Done = 3;
 }
 
-message SynchronizationServiceRequest {
+message GetSyncOrdersRequest {
   uint32 polling_period = 1;
   repeated SyncOrderStatus target_status = 2;
 }
 
-message SynchronizationServiceResponse {
+message GetSyncOrdersResponse {
   repeated SyncOrder orders = 1;
+}
+
+message UpdateSyncOrdersRequest {
+  repeated SyncOrder orders = 1;
+}
+
+message UpdateSyncOrdersResponse {
 }
 

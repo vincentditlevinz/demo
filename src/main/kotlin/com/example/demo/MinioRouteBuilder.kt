@@ -4,10 +4,13 @@ import io.minio.ListObjectsArgs
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.component.minio.MinioConstants
 import org.springframework.stereotype.Component
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Component("MinioRouteBuilder")
 class MinioRouteBuilder : RouteBuilder() {
+    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss")
+
     override fun configure() {
         from("file:src/main/resources/assets?noop=true")
             .routeId("minioCommonUpload")
@@ -24,7 +27,7 @@ class MinioRouteBuilder : RouteBuilder() {
                 .recursive(true) }
             .to("minio://external-technology-scripts?operation=listObjects&pojoRequest=true")
             .split(bodyAs(Iterable::class.java))
-            .setBody().spel("external-technology-scripts bucket contains script: #{request.body.get().objectName}")
+            .setBody().spel("external-technology-scripts bucket contains script: #{request.body.get().objectName} which was last modified: #{@MinioRouteBuilder.formatter.format(request.body.get().lastModified)}")
             .to("log:warn")
     }
 }

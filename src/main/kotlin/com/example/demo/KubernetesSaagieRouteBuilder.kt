@@ -34,7 +34,7 @@ class KubernetesSaagieRouteBuilder : RouteBuilder() {
             }
             .to("saagie-kubernetes-custom-resources:https://35.233.53.73?operation=listCustomResourcesByLabels&namespace=useless")
             .split(body())
-            .to("log:error")
+            .to("log:warn")
     }
 
     /**

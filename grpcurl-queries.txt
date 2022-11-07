@@ -1,1 +1,2 @@
 grpcurl -import-path=src/main/proto -proto src/main/proto/synchronization-service.proto -plaintext -d '{"polling_period": 1000, "target_status": ["1","2"]}' 0.0.0.0:9991 SynchronizationService/GetSyncOrders
+grpcurl -import-path=src/main/proto -proto src/main/proto/synchronization-service.proto -plaintext -d '{}' 0.0.0.0:9991 SynchronizationService/UpdateSyncOrders
