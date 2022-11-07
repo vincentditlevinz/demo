@@ -82,3 +82,7 @@ One might argue that learning Apache Camel is hard:
 * Apache Camel has also [commercial support offering](https://camel.apache.org/manual/commercial-camel-offerings.html) for training support
 * Apache Camel, like any technology as Springframework, Java..., is a competence one can find in the developers' market
 * The competence of writing very low level technical stuffs the right way might be harder to find
+
+# Some Apache Camel pitfalls
+* Camel GRPC is good as a producer (using enrich EIP for instance) BUT not really as a consumer. In this POC we implemented it as a consumer to illustrate how implementing a GRPC api with Camel is not really a good idea compared to a more classical SpringBoot approach, specially in a Kotlin context.
+* Camel + Kotlin work well together except in a few situations: static router (clash with the 'when' reserved keyword) and using 'simple' expression language due to the '$' reserved keyword (one can use 'spel' instead)
