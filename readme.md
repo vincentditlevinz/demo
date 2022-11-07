@@ -83,4 +83,4 @@ One might argue that learning Apache Camel is hard:
 
 # Some Apache Camel pitfalls
 * Not shown here but Apache Camel is not good to write directly to databases (eg `Camel:Mongodb`) compared to a more classical SpringBoot/Spring-data approach
-* Apache Camel and Kotlin work well together except for using the `simple` expression language due to the '$' reserved keyword, but one can use 'spel' instead
+* Apache Camel and Kotlin work well together except for using the `simple` expression language due to the `$` reserved keyword, but one can use 'spel' instead
