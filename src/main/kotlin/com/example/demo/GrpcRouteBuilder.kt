@@ -34,7 +34,7 @@ class GrpcRouteBuilder : RouteBuilder() {
     }
 
 
-    /* Static router cannot be used with Kotlin because of when reserved keyword, we must use a dynamic router which is a bit more involved */
+    /* Static router cannot be used with Kotlin because of 'when' reserved keyword, we must use a dynamic router which is a bit more involved */
     fun routing(@Header("CamelGrpcMethodName") grpcMethodName: String, @ExchangeProperties properties: Map<String, String>): String? {
         val route = properties.getOrDefault("route", run {
             if (grpcMethodName == "getSyncOrders") {
@@ -52,12 +52,15 @@ class GrpcRouteBuilder : RouteBuilder() {
 
     override fun configure() {
         from("grpc://0.0.0.0:9991/com.example.demo.SynchronizationService?consumerStrategy=PROPAGATION")
+            .routeId("grpcServiceRouter")
             .dynamicRouter(method(GrpcRouteBuilder::class.java, "routing"))
 
         from("direct:getSyncOrders")
+            .routeId("getSyncOrders")
             .bean("GrpcRouteBuilder", "buildResponse")
 
         from("direct:error")
+            .routeId("grpcError")
             .bean("GrpcRouteBuilder", "buildError")
     }
 }

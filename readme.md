@@ -49,6 +49,9 @@ The application run several routes:
 8. writeSyncOrders: send a protobuf message in a dedicated RabbitMQ queue 
 9. readSyncOrders: read a protobuf message from a dedicated RabbitMQ queue 
 10. downloadApi(including serveFromMinio): Rest api to download a file, use `http://localhost:8080/api/download/module.js` for testing.
+11. grpcServiceRouter: route GRPC method calls to targeted route
+12. grpcError: throws Unimplemented error when called
+13. getSyncOrders: return expected GRPC response
 
 For the moment this application is just a simple POC that is not configured to be run in K8s but just on your laptop. To enable K8s connection you should run:
 
