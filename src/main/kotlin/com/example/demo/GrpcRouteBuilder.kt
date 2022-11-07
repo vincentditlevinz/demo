@@ -33,9 +33,9 @@ class GrpcRouteBuilder : RouteBuilder() {
         from("grpc://0.0.0.0:9991/com.example.demo.SynchronizationService?consumerStrategy=PROPAGATION")
             .routeId("grpcServiceRouter")
             .choice()
-            .`when`(header("CamelGrpcMethodName").isEqualTo("getSyncOrders"))// Note the `when` because when is a reserved keyword in Kotlin
-                .bean("GrpcRouteBuilder", "buildResponse")
-            .otherwise()
-                .bean("GrpcRouteBuilder", "buildError")
+                .`when`(header("CamelGrpcMethodName").isEqualTo("getSyncOrders"))// Note the `when` because when is a reserved keyword in Kotlin
+                    .bean("GrpcRouteBuilder", "buildResponse")
+                .otherwise()
+                    .bean("GrpcRouteBuilder", "buildError")
     }
 }
